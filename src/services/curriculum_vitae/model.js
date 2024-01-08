@@ -6,7 +6,7 @@ module.exports = {
     logger.info('model.js - Entering getCurriculumVitae()');
 
     // Obtenemos el CV
-    const cv = dao.getCurriculumVitae();
+    const cv = await dao.getCurriculumVitae();
 
     return cv;
   },
