@@ -8,15 +8,10 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT;
 
-// Constantes BBDD
-const dbHost = process.env.DATABASE_URL;
-const db = process.env.DATABASE;
-const dbPort = process.env.db_PORT;
-const dbUsername = process.env.DATABASE_USERNAME;
-const dbPassword = process.env.DATABASE_PASSWORD;
+var cors = require('cors');
 
-// Conectamos la BBDD
-//database.connect(dbHost, db, dbUsername, dbPassword);
+// CORS
+app.use(cors());
 
 // Rutas
 app.use(require('./src/services/curriculum_vitae/routes.js'));
