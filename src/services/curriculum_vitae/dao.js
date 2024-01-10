@@ -1,16 +1,18 @@
-const { default: PersonalData } = require('../../entities/database/personalData');
+const PersonalData = require('../../database/models/PersonalData');
 const logger = require('../../util/logger');
-
-const sqlz = require('sequelize');
-const Sequelize = sqlz.Sequelize;
+const db = require('../../settings/database');
 
 module.exports = {
   async getCurriculumVitae() {
     logger.info('dao.js - Entering getCurriculumVitae()');
 
-    // Obtenemos el CV
-    const cv = await PersonalData.findAll();
-
-    return cv;
+    //await db.connect();
+    try {
+      return await PersonalData(db).findAll();
+    } catch (error) {
+      logger.error('dao.js - Error');
+      logger.error('dao.js - ' + error);
+      return null;
+    }
   },
 };

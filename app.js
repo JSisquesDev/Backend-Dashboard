@@ -1,7 +1,8 @@
 require('dotenv').config();
 
 const logger = require('./src/util/logger.js');
-const database = require('./src/settings/database.js');
+//const database = require('./src/settings/database.js');
+//const database = require('./src/database/models/index.js');
 
 const express = require('express');
 const app = express();
@@ -15,7 +16,7 @@ const dbUsername = process.env.DATABASE_USERNAME;
 const dbPassword = process.env.DATABASE_PASSWORD;
 
 // Conectamos la BBDD
-database.connect(dbHost, db, dbUsername, dbPassword);
+//database.connect(dbHost, db, dbUsername, dbPassword);
 
 // Rutas
 app.use(require('./src/services/curriculum_vitae/routes.js'));

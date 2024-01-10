@@ -2,13 +2,22 @@ require('dotenv').config();
 const logger = require('../util/logger');
 const { Sequelize } = require('sequelize');
 
+/*
 module.exports = {
-  async connect(host, database, username, password) {
+  async connect() {
     logger.info('database.js - Entering getCurriculumVitae()');
 
-    const sequelize = new Sequelize(database, username, password, {
-      host: host,
-      dialect: 'mysql',
+    // Constantes BBDD
+    const dbHost = process.env.DATABASE_URL;
+    const dbName = process.env.DATABASE;
+    const dbPort = process.env.db_PORT;
+    const dbUsername = process.env.DATABASE_USERNAME;
+    const dbPassword = process.env.DATABASE_PASSWORD;
+    const dbDialect = process.env.DATABASE_DIALECT;
+
+    const sequelize = new Sequelize(dbName, dbUsername, dbPassword, {
+      host: dbHost,
+      dialect: dbDialect,
     });
 
     try {
@@ -19,3 +28,26 @@ module.exports = {
     }
   },
 };
+
+*/
+
+// Constantes BBDD
+const dbHost = process.env.DATABASE_URL;
+const dbName = process.env.DATABASE;
+const dbPort = process.env.db_PORT;
+const dbUsername = process.env.DATABASE_USERNAME;
+const dbPassword = process.env.DATABASE_PASSWORD;
+const dbDialect = process.env.DATABASE_DIALECT;
+
+const db = new Sequelize(dbName, dbUsername, dbPassword, {
+  host: dbHost,
+  dialect: dbDialect,
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
+});
+
+module.exports = db;
