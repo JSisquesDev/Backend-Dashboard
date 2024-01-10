@@ -1,6 +1,8 @@
 const dao = require('./dao');
 const logger = require('../../util/logger');
 
+//const { CurriculumVitae } = require('../../entities/CurriculumVitae');
+
 module.exports = {
   async getCurriculumVitae(language) {
     logger.info('model.js - Entering getCurriculumVitae()');
@@ -79,6 +81,8 @@ module.exports = {
       others: others,
       aboutMe: aboutMe,
     };
+
+    //const cu = new CurriculumVitae(personalData);
     return cv;
   },
 };
