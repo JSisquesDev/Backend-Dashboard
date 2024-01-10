@@ -1,8 +1,8 @@
 const { Sequelize } = require('sequelize');
 
 module.exports = sequelize => {
-  const PersonalData = sequelize.define(
-    'PersonalData',
+  const Studies = sequelize.define(
+    'Studies',
     {
       id: {
         type: Sequelize.INTEGER,
@@ -12,13 +12,16 @@ module.exports = sequelize => {
       name: {
         type: Sequelize.STRING,
       },
-      job: {
+      location: {
         type: Sequelize.STRING,
       },
-      email: {
-        type: Sequelize.STRING,
+      start_year: {
+        type: Sequelize.INTEGER,
       },
-      phone: {
+      end_year: {
+        type: Sequelize.INTEGER,
+      },
+      icon: {
         type: Sequelize.STRING,
       },
       created_at: {
@@ -33,19 +36,22 @@ module.exports = sequelize => {
       language: {
         type: Sequelize.STRING,
       },
+      id_personal_data: {
+        type: Sequelize.INTEGER,
+      },
     },
     {
       // options
       sequelize,
-      modelName: 'PersonalData',
-      tableName: 'PERSONAL_DATA',
+      modelName: 'Studies',
+      tableName: 'STUDY',
       createdAt: 'created_at',
       updatedAt: 'updated_at',
       underscore: true,
     },
   );
 
-  PersonalData.sync();
+  Studies.sync();
 
-  return PersonalData;
+  return Studies;
 };
