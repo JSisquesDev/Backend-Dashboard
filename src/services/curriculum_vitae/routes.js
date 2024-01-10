@@ -3,6 +3,7 @@ const controller = require('./controller');
 
 const router = express.Router();
 
+router.get('/cv', controller.getCurriculumVitae);
 router.get('/cv/:LANGUAGE', controller.getCurriculumVitae);
 
 module.exports = router;
