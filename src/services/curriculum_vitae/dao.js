@@ -10,6 +10,7 @@ const Idiom = require('../../database/models/Idiom');
 const Award = require('../../database/models/Award');
 const Other = require('../../database/models/Other');
 const AboutMe = require('../../database/models/AboutMe');
+const SocialMedia = require('../../database/models/SocialMedia');
 
 module.exports = {
   async getPersonalData(language) {
@@ -66,6 +67,18 @@ module.exports = {
       return await Project(db).findAll({ where: { language: language } });
     } catch (error) {
       logger.error('dao.js - Error retrieving projects data');
+      logger.error('dao.js - ' + error);
+      return null;
+    }
+  },
+
+  async getSocialMedia() {
+    logger.info('dao.js - Entering getSocialMedia()');
+
+    try {
+      return await SocialMedia(db).findAll();
+    } catch (error) {
+      logger.error('dao.js - Error retrieving social media data');
       logger.error('dao.js - ' + error);
       return null;
     }

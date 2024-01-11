@@ -13,6 +13,12 @@ module.exports = {
       return null;
     }
 
+    const socialMedia = await dao.getSocialMedia();
+
+    if (!socialMedia) {
+      return null;
+    }
+
     const studies = await dao.getStudies(language);
 
     if (!studies) {
@@ -71,6 +77,7 @@ module.exports = {
 
     const cv = {
       personalData: personalData,
+      socialMedia: socialMedia,
       studies: studies,
       //experience: experience,
       languages: languages,
