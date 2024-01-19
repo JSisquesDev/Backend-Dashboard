@@ -28,7 +28,7 @@ module.exports = {
     logger.info('dao.js - Entering getStudies()');
 
     try {
-      return await Studies(db).findAll({ where: { language: language }, order: ['start_year'] });
+      return await Studies(db).findAll({ where: { language: language }, order: [['end_year', 'DESC']] });
     } catch (error) {
       logger.error('dao.js - Error retrieving studies data');
       logger.error('dao.js - ' + error);
