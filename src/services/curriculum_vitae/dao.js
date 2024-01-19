@@ -28,7 +28,7 @@ module.exports = {
     logger.info('dao.js - Entering getStudies()');
 
     try {
-      return await Studies(db).findAll({ where: { language: language } });
+      return await Studies(db).findAll({ where: { language: language }, order: ['start_year'] });
     } catch (error) {
       logger.error('dao.js - Error retrieving studies data');
       logger.error('dao.js - ' + error);
@@ -52,7 +52,7 @@ module.exports = {
     logger.info('dao.js - Entering getLanguages()');
 
     try {
-      return await Language(db).findAll();
+      return await Language(db).findAll({ order: [['value', 'DESC']] });
     } catch (error) {
       logger.error('dao.js - Error retrieving languages data');
       logger.error('dao.js - ' + error);
@@ -88,7 +88,7 @@ module.exports = {
     logger.info('dao.js - Entering getPrograms()');
 
     try {
-      return await Program(db).findAll();
+      return await Program(db).findAll({ order: [['value', 'DESC']] });
     } catch (error) {
       logger.error('dao.js - Error retrieving programs data');
       logger.error('dao.js - ' + error);
